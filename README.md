@@ -1,4 +1,4 @@
-# Ubuntu Bionic Beaver LAMP Vagrant Box (! Work in progress !)
+# Ubuntu Bionic Beaver LAMP Vagrant Box
 
 The [ArminVieweg/ubuntu-bionic64-lamp](https://app.vagrantup.com/ArminVieweg/boxes/ubuntu-bionic64-lamp) box 
 is a lightweight (<600MB) Vagrant box for VirtualBox based on latest Ubuntu 18.04 "Bionic Beaver" 64-bit. 
