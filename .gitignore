@@ -1,0 +1,5 @@
+.idea
+.vagrant
+*.box
+*.tgz
+adminer.php
