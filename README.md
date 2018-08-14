@@ -1,7 +1,7 @@
 # Ubuntu Bionic Beaver LAMP Vagrant Box
 
 The [ArminVieweg/ubuntu-bionic64-lamp](https://app.vagrantup.com/ArminVieweg/boxes/ubuntu-bionic64-lamp) box 
-is a lightweight (<600MB) Vagrant box for VirtualBox based on latest Ubuntu 18.04 "Bionic Beaver" 64-bit. 
+is a lightweight (~650MB) Vagrant box for VirtualBox based on latest Ubuntu 18.04 "Bionic Beaver" 64-bit. 
 This box is released under GPL-2.0+. 
 
 **The following components are installed:**
@@ -62,8 +62,8 @@ based on configured hostname.
 
 * The default document root is `/var/www/html`
 * In MySQL/MariaDB use `root`/`root` to login
+* For SSH use port 22 and credentials `vagrant`/`vagrant`. You can also use the `private_key` in .vagrant folder.
 * To open Mailcatcher use port 1080: http://bionic.local:1080
-* For SSH use the username `vagrant` and the private key file, created on first vagrant up: `./.vagrant/machines/default/virtualbox/private_key`
 * Supports `vagrant share` (with [ngrok](https://ngrok.com/download) installed)
 
 
