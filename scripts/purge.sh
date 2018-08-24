@@ -29,7 +29,9 @@ apt-get purge -y python-twisted-bin libdbus-glib-1-2 python-pexpect python-pycur
 apt-get autoremove -y
 apt-get clean -y
 apt-get autoclean -y
+apt autoremove
 
+# The following steps may take up to one hour
 # Zero free space to aid VM compression
 dd if=/dev/zero of=/EMPTY bs=1M
 rm -f /EMPTY
@@ -49,8 +51,8 @@ let count--
 dd if=/dev/zero of=/boot/whitespace bs=1024 count=$count;
 rm /boot/whitespace;
 
-swappart=`cat /proc/swaps | tail -n1 | awk -F ' ' '{print $1}'`
-swapoff $swappart;
-dd if=/dev/zero of=$swappart;
-mkswap $swappart;
-swapon $swappart;
+#swappart=`cat /proc/swaps | tail -n1 | awk -F ' ' '{print $1}'`
+#swapoff $swappart;
+#dd if=/dev/zero of=$swappart;
+#mkswap $swappart;
+#swapon $swappart;

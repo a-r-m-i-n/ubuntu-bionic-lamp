@@ -18,8 +18,8 @@ Vagrant.configure("2") do |config|
     config.vm.box = "ArminVieweg/ubuntu-bionic64-lamp"
 
     staticIpAddress = "192.168.12.2"
-    httpPortForwardingHost = "8080"
     config.vm.hostname = "bionic.local"
+    config.hostmanager.aliases = ["www.bionic.local"]
     
     config.vm.network "private_network", type: "dhcp"
     config.vm.provider "virtualbox" do |vb|
@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
 
     config.vm.define "default" do |node|
         node.vm.network :private_network, ip: staticIpAddress
-        node.vm.network :forwarded_port, guest: 80, host: httpPortForwardingHost
+        node.vm.network :forwarded_port, guest: 80, host: 8080, auto_correct: true
     end
 
     # Provider Scripts
@@ -56,7 +56,7 @@ Vagrant.configure("2") do |config|
        rm /tmp/server.pass.key
        openssl req -new -key /etc/apache2/ssl/apache.key -out /tmp/server.csr \
          -subj "/C=DE/ST=North Rhine Westphalia/L=Cologne/O=Dev/OU=Dev/CN=#{config.vm.hostname}" 2>/dev/null
-       openssl x509 -req -days 365 -in /tmp/server.csr -signkey /etc/apache2/ssl/apache.key \
+       openssl x509 -req -days 1024 -in /tmp/server.csr -signkey /etc/apache2/ssl/apache.key \
          -out /etc/apache2/ssl/apache.crt 2>/dev/null
        rm /tmp/server.csr
        service apache2 restart

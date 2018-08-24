@@ -40,14 +40,12 @@ The plugins get installed automatically on first `vagrant up`.
 ### Variables in Vagrantfile
 
 There are some points in Vagrantfile you may adjust for your projects. To be able to run multiple instances
-on one host, you need to specify a unique static ip address. Also, the port forwarding for http must be unique 
-for all running boxes.
+on one host, you need to specify a unique static ip address. 
 
 Default values:
 
 ```
 staticIpAddress = "192.168.12.2"
-httpPortForwardingHost = "8080"
 config.vm.hostname = "bionic.local"
 ```
 
