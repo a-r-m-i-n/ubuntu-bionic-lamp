@@ -34,8 +34,6 @@ The Vagrantfile from this repo requires the following plugins to be installed:
 * vagrant-hostmanager
 * vagrant-winnfsd (for Windows only)
 
-The plugins get installed automatically on first `vagrant up`.
-
 
 ### Variables in Vagrantfile
 
