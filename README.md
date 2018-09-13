@@ -1,7 +1,7 @@
 # Ubuntu Bionic Beaver LAMP Vagrant Box
 
 The [ArminVieweg/ubuntu-bionic64-lamp](https://app.vagrantup.com/ArminVieweg/boxes/ubuntu-bionic64-lamp) box 
-is a lightweight (~650MB) Vagrant box for VirtualBox based on latest Ubuntu 18.04 "Bionic Beaver" 64-bit. 
+is a lightweight (~650MB) Vagrant box for VirtualBox based on latest Ubuntu 18.04 LTS "Bionic Beaver" 64-bit. 
 This box is released under GPL-2.0+. 
 
 **The following components are installed:**
@@ -34,6 +34,11 @@ The Vagrantfile from this repo requires the following plugins to be installed:
 * vagrant-hostmanager
 * vagrant-winnfsd (for Windows only)
 
+To install a Vagrant plugin simply enter
+
+```
+$ vagrant plugin install <name>
+```
 
 ### Variables in Vagrantfile
 
@@ -53,7 +58,6 @@ Vagrantfile comes with a provisioning scripts, which updates the SSL certificate
 based on configured hostname.
 
 
-
 ## Basics
 
 * The default document root is `/var/www/html`
@@ -65,7 +69,7 @@ based on configured hostname.
 
 ## Configuration
 
-In home directory of vagrant user are some php.ini files located, which are sym-linked in conf.d folders of php versions.
+In home directory of Vagrant user are some php.ini files located, which are sym-linked in conf.d folders of php versions.
 The following files are existing:
 
 * **php-5.6.ini** Just used with PHP 5.6
@@ -76,7 +80,7 @@ The following files are existing:
 * **php-cli.ini** Used for CLI
 * **php-xdebug.ini** Settings for XDebug (remote debugging enabled by trigger, profiling prepared but disabled by default)
 
-The paths `/etc/apache2`, `/etc/php` and `/etc/mysql` have got write permissions for vagrant user. 
+The paths `/etc/apache2`, `/etc/php` and `/etc/mysql` have got write permissions for Vagrant user. 
 So you can edit configuration with e.g. WinSCP, without need to perform `sudo` on CLI. 
 
 ### Switch PHP version
@@ -97,10 +101,32 @@ Available versions are:
 Apache server will get automatically restarted and also the CLI PHP version will get changed.
 
 
-
 ## Disk space
 
 The virtual hard disk shipped with [ArminVieweg/ubuntu-bionic64-lamp](https://app.vagrantup.com/ArminVieweg/boxes/ubuntu-bionic64-lamp) 
 stores up to 500 GB by default.
 
 New instances of this box require ~2GB of disk space.
+
+
+## Pro Tips
+
+### Mount composer cache
+
+As a PHP developer I'm working very much with the dependency manager Composer. A disadvantage of working with virtual
+machines, are the separated disks each VM has. So composer will always download dependencies when executed first time
+in VM. 
+
+To avoid that, you can create a Vagrantfile in **.vagrant.d** folder in your home directory, with this content:
+
+```
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    # Mounting Composer cache to all VMs
+    config.vm.synced_folder "/path/to/composer/home/cache", "/var/nfs-composer-cache", type: "nfs"
+    config.bindfs.bind_folder "/var/nfs-composer-cache", "/home/vagrant/.cache/composer", perms: "u=rwX:g=rwX:o=rD"
+end
+```
+This will mount your local composer cache, on host, to VM and every cached package will be installed instantly.
