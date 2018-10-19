@@ -51,8 +51,10 @@ let count--
 dd if=/dev/zero of=/boot/whitespace bs=1024 count=$count;
 rm /boot/whitespace;
 
-#swappart=`cat /proc/swaps | tail -n1 | awk -F ' ' '{print $1}'`
-#swapoff $swappart;
-#dd if=/dev/zero of=$swappart;
-#mkswap $swappart;
-#swapon $swappart;
+swappart=$(cat /proc/swaps | grep -v Filename | tail -n1 | awk -F ' ' '{print $1}')
+if [ "$swappart" != "" ]; then
+  swapoff $swappart;
+  dd if=/dev/zero of=$swappart;
+  mkswap $swappart;
+  swapon $swappart;
+fi
