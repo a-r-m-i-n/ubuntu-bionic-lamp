@@ -7,7 +7,7 @@ This box is released under GPL-2.0+.
 **The following components are installed:**
 
 * Apache 2 (with SSL available)
-* PHP 5.6, 7.0, 7.1 and 7.2 (7.2 enabled by default)
+* PHP 5.6, 7.0 - 7.3 (7.3 enabled by default)
 * XDebug for all versions
 * MariaDB
 * ImageMagick
@@ -76,6 +76,7 @@ The following files are existing:
 * **php-7.0.ini** Just used with PHP 7.0
 * **php-7.1.ini** Just used with PHP 7.1
 * **php-7.2.ini** Just used with PHP 7.2
+* **php-7.3.ini** Just used with PHP 7.3
 * **php-all.ini** Used with all versions (not CLI)
 * **php-cli.ini** Used for CLI
 * **php-xdebug.ini** Settings for XDebug (remote debugging enabled by trigger, profiling prepared but disabled by default)
@@ -96,7 +97,8 @@ Available versions are:
 * **5.6.sh**
 * **7.0.sh**
 * **7.1.sh**
-* **7.2.sh** (enabled by default)
+* **7.2.sh**
+* **7.3.sh** (enabled by default)
 
 Apache server will get automatically restarted and also the CLI PHP version will get changed.
 

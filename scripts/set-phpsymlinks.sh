@@ -42,5 +42,16 @@ ln -s /home/vagrant/php-7.2.ini 95-php-7.2.ini
 
 # CLI
 cd /etc/php/7.2/cli/conf.d
-#ln -s /home/vagrant/php-xdebug.ini 80-xdebug.ini
+ln -s /home/vagrant/php-xdebug.ini 80-xdebug.ini
+ln -s /home/vagrant/php-cli.ini 99-php-cli.ini
+
+# PHP 7.3
+cd /etc/php/7.3/apache2/conf.d
+ln -s /home/vagrant/php-xdebug.ini 80-xdebug.ini
+ln -s /home/vagrant/php-all.ini 90-php-all.ini
+ln -s /home/vagrant/php-7.3.ini 95-php-7.3.ini
+
+# CLI
+cd /etc/php/7.3/cli/conf.d
+ln -s /home/vagrant/php-xdebug.ini 80-xdebug.ini
 ln -s /home/vagrant/php-cli.ini 99-php-cli.ini
