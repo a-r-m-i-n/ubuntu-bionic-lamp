@@ -1,14 +1,18 @@
 # Ubuntu Bionic Beaver LAMP Vagrant Box
 
 The [ArminVieweg/ubuntu-bionic64-lamp](https://app.vagrantup.com/ArminVieweg/boxes/ubuntu-bionic64-lamp) box 
-is a lightweight (~800MB) Vagrant box for VirtualBox based on latest Ubuntu 18.04 LTS "Bionic Beaver" 64-bit. 
+is an optimized Vagrant box for **VirtualBox 6+** based on latest Ubuntu 18.04 LTS "Bionic Beaver" 64-bit, 
+containing an **extended LAMP stack**.
+
 This box is released under GPL-2.0+. 
 
-**The following components are installed:**
+
+## Components
 
 * Apache 2 (with SSL available)
-* PHP 5.6, 7.0 - 7.3 (7.3 enabled by default)
-* XDebug for all versions
+* PHP 5.6, 7.0 - 7.4 (7.3 enabled by default)
+    * with handy switch (e.g. ``$ sudo ~/enable-php/7.4.sh``)
+* XDebug for all versions (except for 7.4RC2)
 * MariaDB
 * ImageMagick
 * Composer
@@ -61,7 +65,7 @@ based on configured hostname.
 ## Basics
 
 * The default document root is `/var/www/html`
-* In MySQL/MariaDB use `root`/`root` to login
+* In MySQL/MariaDB use `root`/`root` to login. An empty `default` is existing.
 * For SSH use port 22 and credentials `vagrant`/`vagrant`. You can also use the `private_key` in .vagrant folder.
 * To open Mailcatcher use port 1080: http://bionic.local:1080
 * Supports `vagrant share` (with [ngrok](https://ngrok.com/download) installed)
@@ -72,17 +76,14 @@ based on configured hostname.
 In home directory of Vagrant user are some php.ini files located, which are sym-linked in conf.d folders of php versions.
 The following files are existing:
 
-* **php-5.6.ini** Just used with PHP 5.6
-* **php-7.0.ini** Just used with PHP 7.0
-* **php-7.1.ini** Just used with PHP 7.1
-* **php-7.2.ini** Just used with PHP 7.2
-* **php-7.3.ini** Just used with PHP 7.3
+* **php-x.y.ini** Just used with PHP x.y (e.g php-7.4.ini)
 * **php-all.ini** Used with all versions (not CLI)
 * **php-cli.ini** Used for CLI
 * **php-xdebug.ini** Settings for XDebug (remote debugging enabled by trigger, profiling prepared but disabled by default)
 
-The paths `/etc/apache2`, `/etc/php` and `/etc/mysql` have got write permissions for Vagrant user. 
-So you can edit configuration with e.g. WinSCP, without need to perform `sudo` on CLI. 
+The paths `/etc/apache2`, `/etc/php` and `/etc/mysql` have got write permissions for Vagrant user,
+which allows you to edit system configuration with e.g. WinSCP, without need to perform `sudo` on CLI. 
+
 
 ### Switch PHP version
 
@@ -99,6 +100,7 @@ Available versions are:
 * **7.1.sh**
 * **7.2.sh**
 * **7.3.sh** (enabled by default)
+* **7.4.sh**
 
 Apache server will get automatically restarted and also the CLI PHP version will get changed.
 
@@ -106,9 +108,9 @@ Apache server will get automatically restarted and also the CLI PHP version will
 ## Disk space
 
 The virtual hard disk shipped with [ArminVieweg/ubuntu-bionic64-lamp](https://app.vagrantup.com/ArminVieweg/boxes/ubuntu-bionic64-lamp) 
-stores up to 500 GB by default.
+stores up to 200 GB by default.
 
-New instances of this box require ~2GB of disk space.
+New instances of this box require ~5GB of disk space.
 
 
 ## Pro Tips

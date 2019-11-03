@@ -5,6 +5,7 @@ a2dismod php7.0
 a2dismod php7.1
 a2dismod php7.2
 a2dismod php7.3
+a2dismod php7.4
 
 a2enmod php5.6
 service apache2 restart
