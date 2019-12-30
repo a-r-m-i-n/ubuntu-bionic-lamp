@@ -10,9 +10,9 @@ This box is released under GPL-2.0+.
 ## Components
 
 * Apache 2 (with SSL available)
-* PHP 5.6, 7.0 - 7.4 (7.3 enabled by default)
+* PHP 5.6, 7.0 - 7.4 (7.4 enabled by default)
     * with handy switch (e.g. ``$ sudo ~/enable-php/7.4.sh``)
-* XDebug for all versions (except for 7.4RC2)
+* XDebug for all versions (except for 7.4)
 * MariaDB
 * ImageMagick
 * Composer
@@ -99,8 +99,8 @@ Available versions are:
 * **7.0.sh**
 * **7.1.sh**
 * **7.2.sh**
-* **7.3.sh** (enabled by default)
-* **7.4.sh**
+* **7.3.sh**
+* **7.4.sh** (enabled by default)
 
 Apache server will get automatically restarted and also the CLI PHP version will get changed.
 
@@ -108,7 +108,7 @@ Apache server will get automatically restarted and also the CLI PHP version will
 ## Disk space
 
 The virtual hard disk shipped with [ArminVieweg/ubuntu-bionic64-lamp](https://app.vagrantup.com/ArminVieweg/boxes/ubuntu-bionic64-lamp) 
-stores up to 200 GB by default.
+stores up to 100 GB by default.
 
 New instances of this box require ~5GB of disk space.
 
