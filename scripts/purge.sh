@@ -19,6 +19,7 @@ rm -f /root/.bash_history /home/vagrant/.bash_history
 rm -Rf /home/vagrant/.nano
 
 composer clearcache
+npm cache clean --force
 
 apt-get purge -y ri
 apt-get purge -y installation-report landscape-common wireless-tools wpasupplicant ubuntu-serverguide
@@ -33,3 +34,9 @@ apt autoremove
 
 # Cleanup log files
 find /var/log -type f | while read f; do echo -ne '' > $f; done;
+
+rm -rf /var/lib/apt/lists/*
+
+dd if=/dev/zero of=~/zeroes
+sync
+rm ~/zeroes
