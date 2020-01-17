@@ -18,7 +18,9 @@ unset HISTFILE
 rm -f /root/.bash_history /home/vagrant/.bash_history
 rm -Rf /home/vagrant/.nano
 
-composer clearcache
+#composer clearcache
+rm -Rf /home/vagrant/.cache/composer
+rm -Rf /home/vagrant/.composer/cache
 npm cache clean --force
 
 apt-get purge -y ri
